@@ -18,7 +18,7 @@ import java.util.*;
  */
 public final class AutomateClient extends BrowserStackClient implements Automate {
 
-  private static final String BASE_URL = "https://www.browserstack.com/automate";
+  private static final String BASE_URL = "https://api.browserstack.com/automate";
   private static final String CACHE_KEY_BROWSERS = "browsers";
 
   /**
@@ -432,6 +432,117 @@ public final class AutomateClient extends BrowserStackClient implements Automate
   public final String getSessionVideo(final String sessionId)
       throws SessionNotFound, AutomateException {
     return getSession(sessionId).getVideoUrl();
+  }
+
+  /**
+   * Fetches the console logs for a session.
+   *
+   * @param sessionId ID that uniquely identifies a session.
+   * @return Console logs for the session.
+   * @throws SessionNotFound
+   * @throws AutomateException
+   */
+  public final String getSessionConsoleLogs(final String sessionId) throws SessionNotFound, AutomateException {
+    return getSessionConsoleLogs(getSession(sessionId));
+  }
+
+  /**
+   * Fetches the console logs for a session.
+   *
+   * @param session {@link Session} for which to retrieve logs.
+   * @return Console logs for the session.
+   * @throws AutomateException
+   */
+  public final String getSessionConsoleLogs(final Session session) throws AutomateException {
+    if (session == null) {
+      throw new AutomateException("Invalid session", 400);
+    }
+
+    if (session.getBrowser_console_logs_url() == null) {
+      throw new AutomateException("Session logs not found", 404);
+    }
+
+    try {
+      BrowserStackRequest request = newRequest(Method.GET, session.getBrowser_console_logs_url(), false);
+      request.getHttpRequest().getHeaders().setAccept("*/*");
+      return request.asString();
+    } catch (BrowserStackException e) {
+      throw new AutomateException(e);
+    }
+  }
+
+  /**
+   * Fetches the HAR logs for a session.
+   *
+   * @param sessionId ID that uniquely identifies a session.
+   * @return HAR logs for the session.
+   * @throws SessionNotFound
+   * @throws AutomateException
+   */
+  public final String getSessionHARLogs(final String sessionId) throws SessionNotFound, AutomateException {
+    return getSessionHARLogs(getSession(sessionId));
+  }
+
+  /**
+   * Fetches the HAR logs for a session.
+   *
+   * @param session {@link Session} for which to retrieve logs.
+   * @return HAR logs for the session.
+   * @throws AutomateException
+   */
+  public final String getSessionHARLogs(final Session session) throws AutomateException {
+    if (session == null) {
+      throw new AutomateException("Invalid session", 400);
+    }
+
+    if (session.getHar_logs_url() == null) {
+      throw new AutomateException("Session logs not found", 404);
+    }
+
+    try {
+      BrowserStackRequest request = newRequest(Method.GET, session.getHar_logs_url(), false);
+      request.getHttpRequest().getHeaders().setAccept("*/*");
+      return request.asString();
+    } catch (BrowserStackException e) {
+      throw new AutomateException(e);
+    }
+  }
+
+  /**
+   * Fetches the Appium logs for a session.
+   *
+   * @param sessionId ID that uniquely identifies a session.
+   * @return Appium logs for the session.
+   * @throws SessionNotFound
+   * @throws AutomateException
+   */
+  public final String getSessionAppiumLogs(final String sessionId) throws SessionNotFound, AutomateException {
+    return getSessionAppiumLogs(getSession(sessionId));
+  }
+
+  /**
+   * Fetches the Appium logs for a session.
+   *
+   * @param session {@link Session} for which to retrieve logs.
+   * @return Appium logs for the session.
+   * @throws AutomateException
+   */
+  public final String getSessionAppiumLogs(final Session session) throws AutomateException {
+    if (session == null) {
+      throw new AutomateException("Invalid session", 400);
+    }
+
+    if (session.getAppium_logs_url() == null) {
+      throw new AutomateException("Session logs not found", 404);
+    }
+
+    try {
+      BrowserStackRequest request = newRequest(Method.GET, session.getAppium_logs_url(), false);
+      request.getHttpRequest().getHeaders().setAccept("*/*");
+      return request.asString();
+    } catch (BrowserStackException e) {
+      throw new AutomateException(e);
+    }
   }
 
   /**

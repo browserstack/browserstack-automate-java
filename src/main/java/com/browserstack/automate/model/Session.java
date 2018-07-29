@@ -62,6 +62,15 @@ public class Session extends BrowserStackObject {
     @JsonProperty("name")
     private String name;
 
+    @JsonProperty("browser_console_logs_url")
+    private String browser_console_logs_url;
+
+    @JsonProperty("har_logs_url")
+    private String har_logs_url;
+
+    @JsonProperty("appium_logs_url")
+    private String appium_logs_url;
+
     @JsonIgnore
     private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
@@ -98,6 +107,30 @@ public class Session extends BrowserStackObject {
         }
 
         return ((AutomateClient) getClient()).getSessionLogs(this);
+    }
+
+    public final String getConsoleLogs() throws AutomateException {
+        if (browser_console_logs_url == null) {
+            throw new AutomateException("Session logs not found", 404);
+        }
+
+        return ((AutomateClient) getClient()).getSessionConsoleLogs(this);
+    }
+
+    public final String getHARLogs() throws AutomateException {
+        if (logUrl == null) {
+            throw new AutomateException("Session logs not found", 404);
+        }
+
+        return ((AutomateClient) getClient()).getSessionHARLogs(this);
+    }
+
+    public final String getAppiumLogs() throws AutomateException {
+        if (logUrl == null) {
+            throw new AutomateException("Session logs not found", 404);
+        }
+
+        return ((AutomateClient) getClient()).getSessionAppiumLogs(this);
     }
 
     /**
@@ -356,6 +389,54 @@ public class Session extends BrowserStackObject {
         this.os = os;
     }
 
+    /**
+     * @return The browser_console_logs_url
+     */
+    @JsonProperty("browser_console_logs_url")
+    public String getBrowser_console_logs_url() {
+        return browser_console_logs_url;
+    }
+
+    /**
+     * @param browser_console_logs_url The browser_console_logs_url
+     */
+    @JsonProperty("browser_console_logs_url")
+    private void setBrowser_console_logs_url(String browser_console_logs_url) {
+        this.browser_console_logs_url = browser_console_logs_url;
+    }
+
+    /**
+     * @return The har_logs_url
+     */
+    @JsonProperty("har_logs_url")
+    public String getHar_logs_url() {
+        return har_logs_url;
+    }
+
+    /**
+     * @param har_logs_url The har_logs_url
+     */
+    @JsonProperty("har_logs_url")
+    private void setHar_logs_url(String har_logs_url) {
+        this.har_logs_url = har_logs_url;
+    }
+
+    /**
+     * @return The appium_logs_url
+     */
+    @JsonProperty("appium_logs_url")
+    public String getAppium_logs_url() {
+        return appium_logs_url;
+    }
+
+    /**
+     * @param appium_logs_url The appium_logs_url
+     */
+    @JsonProperty("appium_logs_url")
+    private void setAppium_logs_url(String appium_logs_url) {
+        this.appium_logs_url = appium_logs_url;
+    }
+
     @JsonAnyGetter
     protected Map<String, Object> getAdditionalProperties() {
         return this.additionalProperties;
@@ -381,6 +462,9 @@ public class Session extends BrowserStackObject {
             setLogUrl(s.getLogUrl());
             setStatus(s.getStatus());
             setReason(s.getReason());
+            setBrowser_console_logs_url(s.getBrowser_console_logs_url());
+            setHar_logs_url(s.getHar_logs_url());
+            setAppium_logs_url(s.getAppium_logs_url());
             this.additionalProperties = s.getAdditionalProperties();
             return true;
         }
