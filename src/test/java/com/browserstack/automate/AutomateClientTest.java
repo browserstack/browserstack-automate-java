@@ -235,6 +235,74 @@ public class AutomateClientTest {
     }
   }
 
+  @Test
+  public void testGetSessionConsoleLogs() {
+    // TODO: Verify if logs are non-empty
+    // Cannot currently be tested during in-progress sessions
+    try {
+      String buildId = automateClient.getBuilds().get(0).getId();
+      List<Session> sessions = automateClient.getSessions(buildId);
+
+      String logs = sessions.get(0).getConsoleLogs();
+      assertTrue("Session Console Logs", logs != null);
+
+      logs = automateClient.getSessionConsoleLogs(sessions.get(0).getId());
+      assertTrue("Session Console Logs", logs != null);
+    } catch (BuildNotFound e) {
+      assertTrue(false);
+    } catch (SessionNotFound e) {
+      assertTrue(false);
+    } catch (AutomateException e) {
+      assertTrue(false);
+    }
+  }
+
+  @Test
+  public void testGetSessionHARLogs() {
+    // TODO: Verify if logs are non-empty
+    // Cannot currently be tested during in-progress sessions
+    // This test may fail sometimes. If the session does not have network logs enabled.
+    try {
+      String buildId = automateClient.getBuilds().get(0).getId();
+      List<Session> sessions = automateClient.getSessions(buildId);
+
+      String logs = sessions.get(0).getHARLogs();
+      assertTrue("Session HAR Logs", logs != null);
+
+      logs = automateClient.getSessionHARLogs(sessions.get(0).getId());
+      assertTrue("Session HAR Logs", logs != null);
+    } catch (BuildNotFound e) {
+      assertTrue(false);
+    } catch (SessionNotFound e) {
+      assertTrue(false);
+    } catch (AutomateException e) {
+      assertTrue(false);
+    }
+  }
+
+  @Test
+  public void testGetSessionAppiumLogs() {
+    // TODO: Verify if logs are non-empty
+    // Cannot currently be tested during in-progress sessions
+    // This test may fail sometimes. If the session does not have appium logs enabled.
+    try {
+      String buildId = automateClient.getBuilds().get(0).getId();
+      List<Session> sessions = automateClient.getSessions(buildId);
+
+      String logs = sessions.get(0).getAppiumLogs();
+      assertTrue("Session Appium Logs", logs != null);
+
+      logs = automateClient.getSessionAppiumLogs(sessions.get(0).getId());
+      assertTrue("Session Appium Logs", logs != null);
+    } catch (BuildNotFound e) {
+      assertTrue(false);
+    } catch (SessionNotFound e) {
+      assertTrue(false);
+    } catch (AutomateException e) {
+      assertTrue(false);
+    }
+  }
+
   // @Test
   public void testRecycleKey() {
     try {
