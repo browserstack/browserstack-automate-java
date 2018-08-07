@@ -261,6 +261,7 @@ public class AutomateClientTest {
   public void testGetSessionHARLogs() {
     // TODO: Verify if logs are non-empty
     // Cannot currently be tested during in-progress sessions
+    // This test may fail sometimes. If the session does not have network logs enabled.
     try {
       String buildId = automateClient.getBuilds().get(0).getId();
       List<Session> sessions = automateClient.getSessions(buildId);
@@ -283,6 +284,7 @@ public class AutomateClientTest {
   public void testGetSessionAppiumLogs() {
     // TODO: Verify if logs are non-empty
     // Cannot currently be tested during in-progress sessions
+    // This test may fail sometimes. If the session does not have appium logs enabled.
     try {
       String buildId = automateClient.getBuilds().get(0).getId();
       List<Session> sessions = automateClient.getSessions(buildId);
