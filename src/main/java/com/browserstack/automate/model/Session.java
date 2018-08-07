@@ -393,7 +393,7 @@ public class Session extends BrowserStackObject {
      * @return The browser_console_logs_url
      */
     @JsonProperty("browser_console_logs_url")
-    public String getBrowser_console_logs_url() {
+    public String getBrowserConsoleLogsUrl() {
         return browser_console_logs_url;
     }
 
@@ -401,7 +401,7 @@ public class Session extends BrowserStackObject {
      * @param browser_console_logs_url The browser_console_logs_url
      */
     @JsonProperty("browser_console_logs_url")
-    private void setBrowser_console_logs_url(String browser_console_logs_url) {
+    private void setBrowserConsoleLogsUrl(String browser_console_logs_url) {
         this.browser_console_logs_url = browser_console_logs_url;
     }
 
@@ -409,7 +409,7 @@ public class Session extends BrowserStackObject {
      * @return The har_logs_url
      */
     @JsonProperty("har_logs_url")
-    public String getHar_logs_url() {
+    public String getHarLogsUrl() {
         return har_logs_url;
     }
 
@@ -417,7 +417,7 @@ public class Session extends BrowserStackObject {
      * @param har_logs_url The har_logs_url
      */
     @JsonProperty("har_logs_url")
-    private void setHar_logs_url(String har_logs_url) {
+    private void setHarLogsUrl(String har_logs_url) {
         this.har_logs_url = har_logs_url;
     }
 
@@ -425,7 +425,7 @@ public class Session extends BrowserStackObject {
      * @return The appium_logs_url
      */
     @JsonProperty("appium_logs_url")
-    public String getAppium_logs_url() {
+    public String getAppiumLogsUrl() {
         return appium_logs_url;
     }
 
@@ -433,7 +433,7 @@ public class Session extends BrowserStackObject {
      * @param appium_logs_url The appium_logs_url
      */
     @JsonProperty("appium_logs_url")
-    private void setAppium_logs_url(String appium_logs_url) {
+    private void setAppiumLogsUrl(String appium_logs_url) {
         this.appium_logs_url = appium_logs_url;
     }
 
@@ -462,9 +462,9 @@ public class Session extends BrowserStackObject {
             setLogUrl(s.getLogUrl());
             setStatus(s.getStatus());
             setReason(s.getReason());
-            setBrowser_console_logs_url(s.getBrowser_console_logs_url());
-            setHar_logs_url(s.getHar_logs_url());
-            setAppium_logs_url(s.getAppium_logs_url());
+            setBrowserConsoleLogsUrl(s.getBrowserConsoleLogsUrl());
+            setHarLogsUrl(s.getHarLogsUrl());
+            setAppiumLogsUrl(s.getAppiumLogsUrl());
             this.additionalProperties = s.getAdditionalProperties();
             return true;
         }

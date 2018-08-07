@@ -458,12 +458,12 @@ public final class AutomateClient extends BrowserStackClient implements Automate
       throw new AutomateException("Invalid session", 400);
     }
 
-    if (session.getBrowser_console_logs_url() == null) {
+    if (session.getBrowserConsoleLogsUrl() == null) {
       throw new AutomateException("Session logs not found", 404);
     }
 
     try {
-      BrowserStackRequest request = newRequest(Method.GET, session.getBrowser_console_logs_url(), false);
+      BrowserStackRequest request = newRequest(Method.GET, session.getBrowserConsoleLogsUrl(), false);
       request.getHttpRequest().getHeaders().setAccept("*/*");
       return request.asString();
     } catch (BrowserStackException e) {
@@ -495,12 +495,12 @@ public final class AutomateClient extends BrowserStackClient implements Automate
       throw new AutomateException("Invalid session", 400);
     }
 
-    if (session.getHar_logs_url() == null) {
+    if (session.getHarLogsUrl() == null) {
       throw new AutomateException("Session logs not found", 404);
     }
 
     try {
-      BrowserStackRequest request = newRequest(Method.GET, session.getHar_logs_url(), false);
+      BrowserStackRequest request = newRequest(Method.GET, session.getHarLogsUrl(), false);
       request.getHttpRequest().getHeaders().setAccept("*/*");
       return request.asString();
     } catch (BrowserStackException e) {
@@ -532,12 +532,12 @@ public final class AutomateClient extends BrowserStackClient implements Automate
       throw new AutomateException("Invalid session", 400);
     }
 
-    if (session.getAppium_logs_url() == null) {
+    if (session.getAppiumLogsUrl() == null) {
       throw new AutomateException("Session logs not found", 404);
     }
 
     try {
-      BrowserStackRequest request = newRequest(Method.GET, session.getAppium_logs_url(), false);
+      BrowserStackRequest request = newRequest(Method.GET, session.getAppiumLogsUrl(), false);
       request.getHttpRequest().getHeaders().setAccept("*/*");
       return request.asString();
     } catch (BrowserStackException e) {
