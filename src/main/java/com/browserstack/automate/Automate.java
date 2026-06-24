@@ -42,6 +42,18 @@ public interface Automate {
 
     String getSessionVideo(String sessionId) throws SessionNotFound, AutomateException;
 
+    String getSessionConsoleLogs(String sessionId) throws SessionNotFound, AutomateException;
+
+    String getSessionConsoleLogs(Session session) throws AutomateException;
+
+    String getSessionHARLogs(String sessionId) throws SessionNotFound, AutomateException;
+
+    String getSessionHARLogs(Session session) throws AutomateException;
+
+    String getSessionAppiumLogs(String sessionId) throws SessionNotFound, AutomateException;
+
+    String getSessionAppiumLogs(Session session) throws AutomateException;
+
     boolean deleteSession(String sessionId) throws SessionNotFound, AutomateException;
 
     String recycleKey() throws AutomateException;
